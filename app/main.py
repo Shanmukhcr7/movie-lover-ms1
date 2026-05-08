@@ -43,6 +43,10 @@ def process_single_article(article_meta: dict):
     seo_title = ai_data.get("seo_title", title)
     summary = ai_data.get("summary", "")
     content = ai_data.get("content", original_text)
+    
+    # Append Copyright / Original Source Credit
+    content += f"\n\n---\n**Disclaimer:** *This article was originally published by {source}. Read the original article [here]({url}).*"
+
     keywords = ai_data.get("keywords", [])
     
     category = category_classifier.classify(content)
