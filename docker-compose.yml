@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  news-microservice:
+    build: .
+    container_name: news-microservice
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./service-account.json:/app/service-account.json:ro
