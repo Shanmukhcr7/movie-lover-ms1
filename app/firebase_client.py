@@ -11,7 +11,13 @@ class FirebaseClient:
     def _initialize(self):
         if not firebase_admin._apps:
             try:
-                if Config.FIREBASE_SERVICE_ACCOUNT_JSON:
+                if Config.FIREBASE_SERVICE_ACCOUNT_BASE64:
+                    import json
+                    import base64
+                    decoded_bytes = base64.b64decode(Config.FIREBASE_SERVICE_ACCOUNT_BASE64)
+                    cred_dict = json.loads(decoded_bytes.decode('utf-8'))
+                    cred = credentials.Certificate(cred_dict)
+                elif Config.FIREBASE_SERVICE_ACCOUNT_JSON:
                     import json
                     cred_dict = json.loads(Config.FIREBASE_SERVICE_ACCOUNT_JSON)
                     cred = credentials.Certificate(cred_dict)
