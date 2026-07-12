@@ -6,7 +6,7 @@ load_dotenv()
 class Config:
     NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY")
     NVIDIA_API_BASE = "https://integrate.api.nvidia.com/v1"
-    MODEL_NAME = "meta/llama-3.3-70b-instruct"
+    MODEL_NAME = os.getenv("MODEL_NAME", "meta/llama-3.1-70b-instruct")
 
     R2_ACCOUNT_ID = os.getenv("R2_ACCOUNT_ID")
     R2_ACCESS_KEY = os.getenv("R2_ACCESS_KEY")
